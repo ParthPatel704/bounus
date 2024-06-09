@@ -8,3 +8,4 @@ opencv-python==4.10.0.82
 pandas==2.2.2
 pandoc==2.3
 pandocfilters==1.5.1
+dlib==19.24.4
