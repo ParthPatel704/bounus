@@ -1,15 +1,20 @@
-<!-- templates/index.html -->
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Run Python Script</title>
-</head>
-<body>
-    <h1>Run Python Script</h1>
-    <form action="/run-script" method="post">
-        <button type="submit">Run Script</button>
-    </form>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Run EXE from Flask</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">Run Executable File</h1>
+      <form method="POST" action="/run">
+        <button type="submit" class="btn btn-primary">Run EXE</button>
+      </form>
+      {% if output %}
+        <h2 class="mt-5">Output:</h2>
+        <pre>{{ output }}</pre>
+      {% endif %}
+    </div>
+  </body>
 </html>

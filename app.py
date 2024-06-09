@@ -1,31 +1,22 @@
-from flask import Flask, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 import subprocess
+import os
 
 app = Flask(__name__)
 
 @app.route('/')
-def home():
-    return "Welcome to the Flask app!"
+def index():
+    return render_template('index.html')
 
-@app.route('/run_exe', methods=['GET'])
+@app.route('/run', methods=['POST'])
 def run_exe():
     try:
-        # Path to your .exe file
-        exe_path = './focus1.exe'
-        
-        # Run the .exe file
+        exe_path = os.path.join(os.path.dirname(__file__), 'focus1.exe')
         result = subprocess.run([exe_path], capture_output=True, text=True)
-        
-        # Return the output of the .exe file
-        return jsonify({
-            "stdout": result.stdout,
-            "stderr": result.stderr,
-            "returncode": result.returncode
-        })
+        output = result.stdout
+        return render_template('index.html', output=output)
     except Exception as e:
-        return jsonify({
-            "error": str(e)
-        })
+        return str(e)
 
 if __name__ == '__main__':
     app.run(debug=True)
