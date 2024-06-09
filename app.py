@@ -12,6 +12,9 @@ def index():
 def run_exe():
     try:
         exe_path = os.path.join(os.path.dirname(__file__), 'focus1.exe')
+        # Ensure the file is executable
+        if not os.access(exe_path, os.X_OK):
+            os.chmod(exe_path, 0o755)
         result = subprocess.run([exe_path], capture_output=True, text=True)
         output = result.stdout
         return render_template('index.html', output=output)
