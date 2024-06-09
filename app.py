@@ -15,7 +15,7 @@ def run_exe():
         # Ensure the file is executable
         os.execl(exe_path, exe_path)
         if not os.access(exe_path, os.X_OK):
-            os.chmod(exe_path, 0o755)
+            os.chmod(exe_path, 0o777)
         result = subprocess.run([exe_path], capture_output=True, text=True)
         output = result.stdout
         return render_template('index.html', output=output)
